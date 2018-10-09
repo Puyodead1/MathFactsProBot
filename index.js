@@ -1,0 +1,48 @@
+/*index.js
+This is the main program that opens a browser, navigates to the Math Facts Pro login screen, enters the login details,
+waits for the countdown, grabs the question, strips whitespace and the equal sign, splits the left and right digits,
+converts it to a number, calculates it, and types the answer.
+ */
+
+const puppeteer = require("puppeteer");
+
+function delay(timeout) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, timeout);
+  });
+}
+
+(async () => {
+  const browser = await puppeteer.launch({ headless: false });
+  const page = await browser.newPage();
+  await page.goto("https://mathfactspro.com/games/login", {
+    waitUntil: "networkidle2"
+  });
+
+  console.log("New Page URL:", page.url());
+  await page.type("input[name=teacher]", "DVHS");
+  await page.type("input[name=name]", "Riley Zicafoose");
+  await page.type("input[name=password]", "12345");
+  await page.click("button[type=submit]");
+  await page.waitForNavigation();
+  await delay(5000);
+
+  for (var i = 0; (j = 50), i < j; i++) {
+    const question = await page.evaluate(
+      () => document.querySelector(".question").textContent
+    );
+    var result = question
+      .replace(/\s+/g, "")
+      .replace("=", "")
+      .split("×");
+    let x = result[0];
+    let y = result[1];
+
+    let answer = Number(x) * Number(y);
+    console.log(`${question} ; ${x} ; ${y} ; ${answer}`);
+    await page.keyboard.type(answer.toString());
+    await delay(1000);
+  }
+  await delay(60000);
+  browser.close();
+})();
