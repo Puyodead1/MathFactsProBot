@@ -20,9 +20,9 @@ function delay(timeout) {
   });
 
   console.log("New Page URL:", page.url());
-  await page.type("input[name=teacher]", "DVHS");
-  await page.type("input[name=name]", "Riley Zicafoose");
-  await page.type("input[name=password]", "12345");
+  await page.type("input[name=teacher]", "Teacher Code");
+  await page.type("input[name=name]", "Your Name");
+  await page.type("input[name=password]", "Password");
   await page.click("button[type=submit]");
   await page.waitForNavigation();
   await delay(5000);
