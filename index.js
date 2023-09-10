@@ -47,7 +47,6 @@ for (i = 0; i < 2; i++) {
         let x = result[0];
         let y = result[1];
 
-<<<<<<< HEAD
         let answer = Number(x) + Number(y);
         console.log(`${question} ; ${x} ; ${y} ; ${answer}`);
         await page.keyboard.type(answer.toString());
@@ -64,15 +63,6 @@ for (i = 0; i < 2; i++) {
           .split("×");
         let x = result[0];
         let y = result[1];
-=======
-  console.log("New Page URL:", page.url());
-  await page.type("input[name=teacher]", "Teacher Code");
-  await page.type("input[name=name]", "Your Name");
-  await page.type("input[name=password]", "Password");
-  await page.click("button[type=submit]");
-  await page.waitForNavigation();
-  await delay(5000);
->>>>>>> d70983be443ba321fef55902bc36521cdb7f3208
 
         let answer = Number(x) * Number(y);
         console.log(`${question} ; ${x} ; ${y} ; ${answer}`);
